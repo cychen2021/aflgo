@@ -71,7 +71,7 @@ def opt_callgraph(args, binary):
     print(f"({STEP}) Constructing CG for {binary}..")
     dot_files = args.temporary_directory / DOT_DIR_NAME
     prefix = dot_files / f"{binary.name}"
-    cmd = ["opt", "-dot-callgraph", f"{binary}",
+    cmd = ["opt", "-p", "dot-callgraph", f"{binary}",
            "-callgraph-dot-filename-prefix", prefix,
            "-o", "/dev/null"]
     log_p = args.temporary_directory / f"step{STEP}.log"
