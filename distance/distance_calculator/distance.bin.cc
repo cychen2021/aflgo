@@ -175,7 +175,10 @@ std::vector<vertex_desc> cfg_calculation(
         bo::trim(line);
         std::vector<std::string> splits;
         bo::algorithm::split(splits, line, bo::is_any_of(","));;
-        assert(splits.size() == 2);
+        if (splits.size() != 2) {
+            cerr << "Invalid line in callsites file: " << line << "\n";
+            exit(-1);
+        }
         if (not find_nodes(G, splits[0]).empty()) {
             if (cg_distance.find(splits[1]) != cg_distance.end()) {
                 if (bb_distance.find(splits[0]) != bb_distance.end()) {
